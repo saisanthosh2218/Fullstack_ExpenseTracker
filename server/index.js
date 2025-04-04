@@ -13,9 +13,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000',process.env.FRONTEND_URL],
+  origin: ['http://localhost:3000', 'https://fullstack-expense-tracker-three.vercel.app', process.env.FRONTEND_URL],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
 }));
 app.use(express.json());
 

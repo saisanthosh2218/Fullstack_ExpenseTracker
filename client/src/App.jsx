@@ -68,7 +68,7 @@ function App() {
     try {
       const res = await axios.post('/auth/register', { name, email, password });
       localStorage.setItem('token', res.data.token);
-      // axios.defaults.headers.common['x-auth-token'] = res.data.token;
+      axios.defaults.headers.common['x-auth-token'] = res.data.token;
       
       const userRes = await axios.get('/auth/user');
       setUser(userRes.data);
