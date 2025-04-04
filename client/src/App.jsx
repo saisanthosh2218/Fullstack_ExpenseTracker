@@ -9,7 +9,6 @@ import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import Transactions from './components/transactions/Transactions';
 import AddTransaction from './components/transactions/AddTransaction';
-import EditTransaction from './components/transactions/EditTransaction';
 import Navbar from './components/layout/Navbar';
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -115,11 +114,6 @@ function App() {
             <Route path="/add-transaction" element={
               <PrivateRoute isAuthenticated={isAuthenticated}>
                 <AddTransaction />
-              </PrivateRoute>
-            } />
-            <Route path="/edit-transaction/:id" element={
-              <PrivateRoute isAuthenticated={isAuthenticated}>
-                <EditTransaction />
               </PrivateRoute>
             } />
           </Routes>

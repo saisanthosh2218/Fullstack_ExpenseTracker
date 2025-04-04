@@ -16,32 +16,6 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route   GET api/transactions/:id
-// @desc    Get a single transaction by ID
-// @access  Private
-router.get('/:id', auth, async (req, res) => {
-  try {
-    const transaction = await Transaction.findById(req.params.id);
-    
-    if (!transaction) {
-      return res.status(404).json({ msg: 'Transaction not found' });
-    }
-    
-    // Make sure user owns transaction
-    if (transaction.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: 'Not authorized' });
-    }
-    
-    res.json(transaction);
-  } catch (err) {
-    console.error(err.message);
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Transaction not found' });
-    }
-    res.status(500).send('Server error');
-  }
-});
-
 // @route   POST api/transactions
 // @desc    Add a transaction
 // @access  Private
