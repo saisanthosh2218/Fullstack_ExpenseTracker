@@ -35,7 +35,7 @@ function App() {
         axios.defaults.headers.common['x-auth-token'] = token;
         
         // Get user data
-        const res = await axios.get('/api/auth/user');
+        const res = await axios.get('/auth/user');
         setUser(res.data);
         setIsAuthenticated(true);
       } catch (err) {
@@ -51,11 +51,11 @@ function App() {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
+      const res = await axios.post('/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['x-auth-token'] = res.data.token;
       
-      const userRes = await axios.get('/api/auth/user');
+      const userRes = await axios.get('/auth/user');
       setUser(userRes.data);
       setIsAuthenticated(true);
       return true;
@@ -66,11 +66,11 @@ function App() {
 
   const register = async (name, email, password) => {
     try {
-      const res = await axios.post('/api/auth/register', { name, email, password });
+      const res = await axios.post('/auth/register', { name, email, password });
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['x-auth-token'] = res.data.token;
       
-      const userRes = await axios.get('/api/auth/user');
+      const userRes = await axios.get('/auth/user');
       setUser(userRes.data);
       setIsAuthenticated(true);
       return true;

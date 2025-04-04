@@ -36,7 +36,7 @@ const AddTransaction = () => {
     setLoading(true);
     
     try {
-      await axios.post('/api/transactions', {
+      await axios.post('/transactions', {
         ...formData,
         amount: parseFloat(amount)
       });

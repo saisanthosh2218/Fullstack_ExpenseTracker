@@ -16,7 +16,7 @@ const Transactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const res = await axios.get('/api/transactions');
+        const res = await axios.get('/transactions');
         setTransactions(res.data);
         setLoading(false);
       } catch (err) {
@@ -31,7 +31,7 @@ const Transactions = () => {
   const deleteTransaction = async (id) => {
     if (window.confirm('Are you sure you want to delete this transaction?')) {
       try {
-        await axios.delete(`/api/transactions/${id}`);
+        await axios.delete(`/transactions/${id}`);
         setTransactions(transactions.filter(transaction => transaction._id !== id));
       } catch (err) {
         console.error('Error deleting transaction:', err);

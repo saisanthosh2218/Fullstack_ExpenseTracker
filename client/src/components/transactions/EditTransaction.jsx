@@ -25,7 +25,7 @@ const EditTransaction = () => {
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
-        const res = await axios.get(`/api/transactions/${id}`);
+        const res = await axios.get(`/transactions/${id}`);
         const transaction = res.data;
         
         // Format the date to YYYY-MM-DD for input
@@ -66,7 +66,7 @@ const EditTransaction = () => {
     setSubmitting(true);
     
     try {
-      await axios.put(`/api/transactions/${id}`, {
+      await axios.put(`/transactions/${id}`, {
         ...formData,
         amount: parseFloat(amount)
       });
