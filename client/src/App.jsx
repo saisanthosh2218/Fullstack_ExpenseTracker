@@ -13,7 +13,7 @@ import Navbar from './components/layout/Navbar';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Set default axios base URL
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_BACKEND_URL_LOCAL;
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
