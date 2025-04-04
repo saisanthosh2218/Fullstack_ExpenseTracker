@@ -26,8 +26,8 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/transactions', transactionRoutes);
+app.use('/auth', authRoutes);
+app.use('/transactions', transactionRoutes);
 
 // Default route
 app.get('/', (req, res) => {
