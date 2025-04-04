@@ -14,7 +14,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 
 // Set default axios base URL
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_BACKEND_URL_LOCAL;
-
+console.log("Using API URL:", axios.defaults.baseURL);
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
