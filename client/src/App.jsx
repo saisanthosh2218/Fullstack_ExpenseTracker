@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import Transactions from './components/transactions/Transactions';
 import AddTransaction from './components/transactions/AddTransaction';
+import EditTransaction from './components/transactions/EditTransaction';
 import Navbar from './components/layout/Navbar';
 import PrivateRoute from './components/routing/PrivateRoute';
 
@@ -34,7 +35,7 @@ function App() {
         axios.defaults.headers.common['x-auth-token'] = token;
         
         // Get user data
-        const res = await axios.get('/auth/user');
+        const res = await axios.get('/api/auth/user');
         setUser(res.data);
         setIsAuthenticated(true);
       } catch (err) {
@@ -50,11 +51,11 @@ function App() {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post('/auth/login', { email, password });
+      const res = await axios.post('/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['x-auth-token'] = res.data.token;
       
-      const userRes = await axios.get('/auth/user');
+      const userRes = await axios.get('/api/auth/user');
       setUser(userRes.data);
       setIsAuthenticated(true);
       return true;
@@ -65,11 +66,11 @@ function App() {
 
   const register = async (name, email, password) => {
     try {
-      const res = await axios.post('/auth/register', { name, email, password });
+      const res = await axios.post('/api/auth/register', { name, email, password });
       localStorage.setItem('token', res.data.token);
       axios.defaults.headers.common['x-auth-token'] = res.data.token;
       
-      const userRes = await axios.get('/auth/user');
+      const userRes = await axios.get('/api/auth/user');
       setUser(userRes.data);
       setIsAuthenticated(true);
       return true;
@@ -114,6 +115,11 @@ function App() {
             <Route path="/add-transaction" element={
               <PrivateRoute isAuthenticated={isAuthenticated}>
                 <AddTransaction />
+              </PrivateRoute>
+            } />
+            <Route path="/edit-transaction/:id" element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <EditTransaction />
               </PrivateRoute>
             } />
           </Routes>
