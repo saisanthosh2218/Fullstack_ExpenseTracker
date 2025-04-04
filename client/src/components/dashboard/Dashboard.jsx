@@ -41,7 +41,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         // Get all transactions
-        const transactionsRes = await axios.get('/api/transactions');
+        const transactionsRes = await axios.get('/transactions');
         const transactions = transactionsRes.data;
         setAllTransactions(transactions);
         setRecentTransactions(transactions.slice(0, 5));
